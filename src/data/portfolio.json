@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "Your Name - Generative AI Portfolio",
+    "description": "Aspiring Master of Computer Applications student with a strong portfolio in Generative AI. Experienced in developing full-stack applications.",
+    "keywords": "Generative AI, Machine Learning, AI/ML, Full-stack Developer, Python, FastAPI, Flask, Flutter, GPT-2, Stable Diffusion, Portfolio, MCA, Computer Vision"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Your Name",
+    "tagline": "Aspiring Master of Computer Applications student with a strong portfolio in Generative AI.",
+    "description": "Experienced in developing full-stack applications using Python, FastAPI, Flask, Flutter and various AI models like GPT-2 and Stable Diffusion. Proven ability to build, fine-tune, and deploy machine learning solutions, from personalized learning assistants to image generation tools.",
+    "ctaPrimary": { "text": "View My Projects", "href": "#projects" },
+    "ctaSecondary": { "text": "Say hello", "href": "#contact" },
+    "resumeLink": "",
+    "stats": [
+      { "id": "st1", "value": "7+", "label": "Projects Built" },
+      { "id": "st2", "value": "2", "label": "Internships" },
+      { "id": "st3", "value": "2+", "label": "Certificates" },
+      { "id": "st4", "value": "5+", "label": "AI Models Used" }
+    ]
+  },
+  "about": {
+    "profileImage": "/images/profile.jpg",
+    "bio": [
+      "Seeking to apply advanced AI/ML skills to solve complex problems. My journey into AI/ML is driven by a passion for creating intelligent solutions that impact real-world challenges. From fine-tuning cutting-edge models to deploying scalable full-stack applications, I thrive on bringing innovative ideas to life.",
+      "I am eager to contribute my skills and knowledge to groundbreaking projects and continue learning in the dynamic field of Artificial Intelligence and Machine Learning."
+    ],
+    "services": [
+      { "id": "s1", "icon": "fas fa-brain", "title": "Generative AI Solutions", "description": "Developing innovative applications using models like GPT-2 and Stable Diffusion." },
+      { "id": "s2", "icon": "fas fa-code", "title": "Full-stack Application Development", "description": "Building robust web applications with Python (FastAPI, Flask), Flutter and modern frontends." },
+      { "id": "s3", "icon": "fas fa-cogs", "title": "Machine Learning Deployment", "description": "Deploying AI/ML models into production environments efficiently." },
+      { "id": "s4", "icon": "fas fa-eye", "title": "Computer Vision Projects", "description": "Implementing solutions for image analysis, translation, and style transfer." },
+      { "id": "s5", "icon": "fas fa-robot", "title": "NLP Solutions", "description": "Creating natural language processing tools, from assistants to text generators." },
+      { "id": "s6", "icon": "fas fa-flask", "title": "Custom AI Model Development", "description": "Building and fine-tuning bespoke AI models for specific problem sets." }
+    ]
+  },
+  "filterCategories": [
+    { "value": "generative-ai", "label": "Generative AI" },
+    { "value": "full-stack", "label": "Full-stack" },
+    { "value": "computer-vision", "label": "Computer Vision" },
+    { "value": "hybrid-ai", "label": "Hybrid AI" }
+  ],
+  "projects": [
+    {
+      "id": "p1",
+      "image": "/images/projects/speech-recognition.jpg",
+      "title": "AI-Powered Speech Recognition System",
+      "tags": "Generative AI & FastAPI",
+      "category": "generative-ai full-stack",
+      "description": "Engineered a robust, full-stack web application for real-time and batch speech-to-text transcription. Integrates faster-whisper (Whisper ASR model) for accurate, multilingual transcription from live microphone streams and uploaded audio files (with intelligent chunking), all presented within a sleek black & gold user interface.",
+      "link": "https://github.com/mishal4583/Generative-AI-Speech-Recognition-System"
+    },
+    {
+      "id": "p2",
+      "image": "/images/projects/text-summarizer.jpg",
+      "title": "AI-Powered Text Summarizer & Sentiment Analyzer",
+      "tags": "Flask, Hugging Face Transformers & NLTK",
+      "category": "generative-ai full-stack",
+      "description": "Developed a full-stack web application for intelligent text processing, combining abstractive summarization with sentiment analysis. Features include robust long text handling via chunking, an NLTK-based extractive fallback, and a responsive glassmorphism UI. Optimized for performance with model caching and asynchronous processing.",
+      "link": "https://github.com/mishal4583/Generative-AI-Text-Summarizer"
+    },
+    {
+      "id": "p3",
+      "image": "/images/projects/mentra-ai.jpg",
+      "title": "Mentra AI – Personalized Learning Assistant",
+      "tags": "Generative AI & FastAPI",
+      "category": "generative-ai full-stack",
+      "description": "Built a lightweight AI assistant using a fine-tuned GPT-2 model with a FastAPI backend and a futuristic HTML/CSS UI. Enabled secure, real-time prompt generation with local .safetensors model loading for offline, private inference.",
+      "link": "https://github.com/mishal4583/Generative-AI-Text-Generation-with-GPT"
+    },
+    {
+      "id": "p4",
+      "image": "/images/projects/image-gen.jpg",
+      "title": "Image Generation with Pre-trained Models",
+      "tags": "Generative AI & Flask",
+      "category": "generative-ai full-stack",
+      "description": "Built a Flask web app for real-time image generation using Stable Diffusion models (Realisian, Waifu, OrangeMix). Integrated prompt-based inference with history tracking, async generation, and live usage statistics.",
+      "link": "https://github.com/mishal4583/Generative-AI-Image-Generation-with-Pre-trained-Models"
+    },
+    {
+      "id": "p5",
+      "image": "/images/projects/hybrid-text-gen.jpg",
+      "title": "AI-Powered Hybrid Text Generator",
+      "tags": "Hybrid AI & Flask",
+      "category": "hybrid-ai full-stack",
+      "description": "Developed a Flask web app combining Markov Chains and GPT-2 for hybrid multi-genre text generation. Enabled real-time generation with output customization, interactive n-gram analysis, and a responsive Tailwind CSS UI.",
+      "link": "https://github.com/mishal4583/Generative-AI-AI-Powered-Hybrid-Text-Generator"
+    },
+    {
+      "id": "p6",
+      "image": "/images/projects/pix2pix.jpg",
+      "title": "Pix2Pix Image-to-Image Translation",
+      "tags": "Computer Vision & GANs",
+      "category": "computer-vision",
+      "description": "Implemented a Conditional GAN using U-Net and PatchGAN to translate architectural maps into realistic building facades. Trained on the CMP Facades dataset using combined adversarial (GAN) and L1 loss to enhance image sharpness.",
+      "link": "https://github.com/mishal4583/Generative-AI-Image-Generation-with-Pre-trained-Models"
+    },
+    {
+      "id": "p7",
+      "image": "/images/projects/style-transfer.jpg",
+      "title": "Neural Style Transfer Web App",
+      "tags": "Computer Vision & Streamlit",
+      "category": "computer-vision full-stack",
+      "description": "Built a Streamlit web app for real-time style transfer using TensorFlow Hub's pre-trained stylization model. Enabled user uploads for content and style images, with downloadable stylized outputs and a modular API design.",
+      "link": "https://github.com/mishal4583/Generative-AI-Neural-Style-Transfer-Web-App"
+    }
+  ],
+  "internships": [
+    {
+      "id": "i1",
+      "image": "/images/internships/internship1.jpg",
+      "title": "Artificial Intelligence",
+      "company": "Codtech"
+    },
+    {
+      "id": "i2",
+      "image": "/images/internships/internship2.jpg",
+      "title": "Generative Artificial Intelligence",
+      "company": "Prodigy"
+    }
+  ],
+  "skills": {
+    "categories": [
+      {
+        "id": "sc1",
+        "name": "Programming Languages",
+        "skills": [
+          { "id": "sk1", "name": "Python", "level": 95 },
+          { "id": "sk2", "name": "Java", "level": 80 },
+          { "id": "sk3", "name": "Flutter", "level": 85 },
+          { "id": "sk4", "name": "C", "level": 70 },
+          { "id": "sk5", "name": "SQL", "level": 85 },
+          { "id": "sk6", "name": "JavaScript", "level": 90 },
+          { "id": "sk7", "name": "HTML/CSS", "level": 95 },
+          { "id": "sk8", "name": "React", "level": 75 }
+        ]
+      },
+      {
+        "id": "sc2",
+        "name": "AI/ML Technologies",
+        "skills": [
+          { "id": "sk9", "name": "GPT-2", "level": 90 },
+          { "id": "sk10", "name": "Stable Diffusion", "level": 88 },
+          { "id": "sk11", "name": "GANs", "level": 85 },
+          { "id": "sk12", "name": "Transformers", "level": 92 },
+          { "id": "sk13", "name": "NumPy", "level": 95 },
+          { "id": "sk14", "name": "TensorFlow", "level": 90 },
+          { "id": "sk15", "name": "OpenCV", "level": 80 },
+          { "id": "sk16", "name": "Pillow", "level": 85 },
+          { "id": "sk17", "name": "Hugging Face", "level": 92 }
+        ]
+      },
+      {
+        "id": "sc3",
+        "name": "Frameworks & Tools",
+        "skills": [
+          { "id": "sk18", "name": "FastAPI", "level": 90 },
+          { "id": "sk19", "name": "Flask", "level": 88 },
+          { "id": "sk20", "name": "Streamlit", "level": 85 },
+          { "id": "sk21", "name": "React", "level": 70 },
+          { "id": "sk22", "name": "Flutter", "level": 65 },
+          { "id": "sk23", "name": "Git", "level": 92 },
+          { "id": "sk24", "name": "Google Colab", "level": 90 },
+          { "id": "sk25", "name": "Android Development", "level": 70 }
+        ]
+      }
+    ]
+  },
+  "certificates": [
+    {
+      "id": "c1",
+      "image": "/images/certificates/certi1.jpg",
+      "title": "AI Engineering Essentials: Navigating the Tech Revolution",
+      "link": "https://www.linkedin.com/learning/certificates/3c51cbd7263c39304cfe469878e9b90624379a0df54dbbc75aeafe21fa5eac54"
+    },
+    {
+      "id": "c2",
+      "image": "/images/certificates/certi2.jpg",
+      "title": "AI in Connected Products (AIOT)",
+      "link": "https://www.linkedin.com/learning/certificates/1216f485ed19365a16a760fe0117a79cad0fe9779a40629af5bb51b84a92a3e5"
+    }
+  ],
+  "education": [
+    {
+      "id": "ed1",
+      "degree": "Master of Computer Applications (MCA)",
+      "institution": "Your University",
+      "year": "2023 – Present",
+      "description": "Specializing in Artificial Intelligence and Machine Learning with focus on Generative AI.",
+      "grade": ""
+    },
+    {
+      "id": "ed2",
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "institution": "Your University",
+      "year": "2020 – 2023",
+      "description": "Graduated with distinction. Core focus on programming, data structures, and software engineering.",
+      "grade": "8.5 CGPA"
+    }
+  ],
+  "contact": {
+    "email": "your.email@example.com",
+    "location": "Bengaluru, Karnataka, India",
+    "github": "https://github.com/mishal4583",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "twitter": ""
+  },
+  "languages": {
+    "fluent": "English (Fluent), Malayalam (Native)",
+    "comprehension": "Comprehension: Kannada, Hindi and Tamil."
+  },
+  "footer": {
+    "name": "Your Name",
+    "year": "2025"
+  }
+}
