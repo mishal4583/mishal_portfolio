@@ -922,7 +922,8 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newData),
       });
-      if (!res.ok) throw new Error('Write failed');
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || json.message || `HTTP ${res.status}`);
       setData(newData);
       showToast('Saved!');
     } catch (e) {
