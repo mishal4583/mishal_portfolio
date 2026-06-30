@@ -909,6 +909,34 @@ function NumbersTab({ data, saveSection }) {
   );
 }
 
+/* ── AI Lab Tab ── */
+function AiLabTab({ data, saveSection }) {
+  const def = { headingMain: "Don't read about my AI.", headingAccent: 'Talk to it.', subheading: 'Ask this assistant anything about my work, stack or projects — it answers live.', context: '' };
+  const [form, setForm] = useState({ ...def, ...(data.ailab || {}) });
+  const f = k => v => setForm(p => ({ ...p, [k]: v }));
+
+  return (
+    <div>
+      <Field label="Heading — main text" value={form.headingMain} onChange={f('headingMain')} placeholder="Don't read about my AI." />
+      <Field label="Heading — accent text (orange)" value={form.headingAccent} onChange={f('headingAccent')} placeholder="Talk to it." />
+      <Field label="Subheading" value={form.subheading} onChange={f('subheading')} multiline placeholder="Ask this assistant anything…" />
+      <div style={S.fieldWrap}>
+        <label style={S.label}>AI Chat Context (Gemini system prompt)</label>
+        <p style={{ color: cl.sub, fontSize: 12, margin: '0 0 8px' }}>
+          This text is sent to Gemini before every conversation. Describe your skills, projects and background here so the chatbot can answer accurately.
+        </p>
+        <textarea
+          style={{ ...S.textarea, minHeight: 200, fontFamily: 'monospace', fontSize: 13 }}
+          value={form.context}
+          onChange={e => setForm(p => ({ ...p, context: e.target.value }))}
+          placeholder="You are the portfolio assistant for…"
+        />
+      </div>
+      <button style={S.saveBtn} onClick={() => saveSection('ailab', form)}>Save AI Lab</button>
+    </div>
+  );
+}
+
 /* ── Tabs config ── */
 const TABS = [
   { id: 'projects',  label: 'Projects' },
@@ -922,6 +950,7 @@ const TABS = [
   { id: 'featured',  label: 'Featured Project' },
   { id: 'manifesto', label: 'Manifesto & Marquee' },
   { id: 'github',    label: 'GitHub' },
+  { id: 'ailab',     label: 'AI Lab' },
 ];
 
 /* ── Main Admin Page ── */
@@ -1040,6 +1069,7 @@ export default function AdminPage() {
             {tab === 'featured'  && <FeaturedTab    {...tabProps} />}
             {tab === 'manifesto' && <ManifestoTab   {...tabProps} saveMulti={saveMulti} />}
             {tab === 'github'    && <GitHubTab      {...tabProps} />}
+            {tab === 'ailab'     && <AiLabTab       {...tabProps} />}
           </div>
         </div>
       </div>

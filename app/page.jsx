@@ -135,6 +135,12 @@ export default function Portfolio() {
       { label: 'KEY FEATURES', text: '3-phase animated page transitions · dynamic menu explorer · masonry photo gallery with lightbox · AI concierge chatbot · WhatsApp & Instagram FABs.' },
     ],
   });
+  const [ailabData, setAilabData] = useState({
+    headingMain: "Don't read about my AI.",
+    headingAccent: 'Talk to it.',
+    subheading: 'Ask this assistant anything about my work, stack or projects — it answers live.',
+    context: CHAT_CONTEXT,
+  });
   const [manifestoText, setManifestoText] = useState('I build *full-stack* products — mobile, web & *blockchain* — and put *AI* where it *matters.*');
   const [marqueeRows, setMarqueeRows] = useState({ row1: MARQUEE_ROW1, row2: MARQUEE_ROW2 });
   const [githubData, setGithubData] = useState({
@@ -183,6 +189,7 @@ export default function Portfolio() {
         if (d.manifesto) setManifestoText(d.manifesto);
         if (d.marquee) setMarqueeRows(d.marquee);
         if (d.github) setGithubData(d.github);
+        if (d.ailab) setAilabData(prev => ({ ...prev, ...d.ailab }));
       })
       .catch((e) => console.error('Failed to load portfolio data:', e));
   }, []);
@@ -631,12 +638,12 @@ export default function Portfolio() {
           <div className="section-label">06 — AI LAB &nbsp;<span style={{ color: '#6f675f' }}>· move your cursor</span></div>
 
           <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(34px,5vw,76px)', lineHeight: 0.98, letterSpacing: '-0.02em', margin: '0 0 14px', color: '#f3efe9', maxWidth: '18ch' }}>
-            Don&apos;t read about my AI. <span style={{ color: 'var(--accent)' }}>Talk to it.</span>
+            {ailabData.headingMain} <span style={{ color: 'var(--accent)' }}>{ailabData.headingAccent}</span>
           </h2>
           <p style={{ maxWidth: '540px', margin: '0 0 36px', color: '#9b938a', fontSize: '15px', lineHeight: 1.7 }}>
-            Ask this assistant anything about my work, stack or projects — it answers live.
+            {ailabData.subheading}
           </p>
-          <ChatWidget context={CHAT_CONTEXT} />
+          <ChatWidget context={ailabData.context} />
           <div className="ailab-links">
             {(githubData.pinnedRepos || []).slice(0, 3).map(r => (
               <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" className="ailab-link">↗ {r.name}{r.live ? ' (live)' : ' on GitHub'}</a>
