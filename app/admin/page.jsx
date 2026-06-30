@@ -545,7 +545,7 @@ function FeaturedTab({ data, saveSection }) {
 }
 
 /* ── Manifesto & Marquee Tab ── */
-function ManifestoTab({ data, saveSection }) {
+function ManifestoTab({ data, saveSection, saveMulti }) {
   const [text, setText] = useState(data.manifesto || '');
   const [rows, setRows] = useState({ row1: [], row2: [], ...(data.marquee || {}) });
   const [chipIn, setChipIn] = useState({ r1: '', r2: '' });
@@ -557,10 +557,7 @@ function ManifestoTab({ data, saveSection }) {
   };
   const removeChip = (row, i) => setRows(p => ({ ...p, [row]: p[row].filter((_, idx) => idx !== i) }));
 
-  const save = () => {
-    saveSection('manifesto', text);
-    saveSection('marquee', rows);
-  };
+  const save = () => saveMulti({ manifesto: text, marquee: rows });
 
   return (
     <div>
@@ -934,6 +931,7 @@ export default function AdminPage() {
 
   /* Each tab calls this with (sectionKey, newSectionValue) */
   const saveSection = (key, val) => saveFull({ ...data, [key]: val });
+  const saveMulti   = (updates)  => saveFull({ ...data, ...updates });
 
   if (!authed) return <LoginScreen onAuth={() => setAuthed(true)} />;
 
@@ -997,7 +995,7 @@ export default function AdminPage() {
             {tab === 'contact'   && <ContactTab     {...tabProps} />}
             {tab === 'numbers'   && <NumbersTab     {...tabProps} />}
             {tab === 'featured'  && <FeaturedTab    {...tabProps} />}
-            {tab === 'manifesto' && <ManifestoTab   {...tabProps} />}
+            {tab === 'manifesto' && <ManifestoTab   {...tabProps} saveMulti={saveMulti} />}
             {tab === 'github'    && <GitHubTab      {...tabProps} />}
           </div>
         </div>
