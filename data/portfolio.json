@@ -1,0 +1,161 @@
+{
+  "hero": {
+    "name": "Mishal KS",
+    "subtitle": "FULL-STACK DEVELOPER · AI ENGINEER · MOBILE & WEB",
+    "description": "I build full-stack mobile & web apps — Flutter, Next.js, Firebase, blockchain and applied AI — and ship them to real users.",
+    "resumeUrl": ""
+  },
+  "about": {
+    "heading": "An MCA student who ships full-stack products — mobile, web, blockchain & AI.",
+    "paragraphs": [
+      "I'm a full-stack developer based in Bangalore, building scalable mobile and web apps with Flutter, Next.js, React, FastAPI, Flask and Firebase — and weaving in applied AI and blockchain where they add real value.",
+      "I like carrying an idea all the way to a shipped product people actually use — from a live restaurant platform serving real customers to a blockchain-backed campus credit system — and I'm eager to bring that to ambitious engineering teams."
+    ],
+    "cards": [
+      { "label": "LOCATION", "val": "Bangalore, IN" },
+      { "label": "EDUCATION", "val": "MCA · JAIN" },
+      { "label": "FOCUS", "val": "Full-Stack + AI" },
+      { "label": "STATUS", "val": "Open to roles" },
+      { "label": "INTERESTS", "val": "Blockchain & AI" },
+      { "label": "LANGUAGES", "val": "ML · EN · +3" }
+    ]
+  },
+  "featured": {
+    "title": "Veycho Resto-Café",
+    "description": "A full-stack restaurant & hospitality platform — designed, built and deployed to production at veycho.in, now serving a real café in Wayanad, Kerala.",
+    "url": "https://veycho.in",
+    "img": "/images/projects/veycho.png",
+    "tags": ["Next.js 16", "TypeScript", "Supabase", "Vercel", "Live in production"],
+    "details": [
+      { "label": "THE PROBLEM", "text": "A growing café needed more than a social page — a fast, branded web presence where guests could browse the menu, explore the area and get in touch." },
+      { "label": "THE SOLUTION", "text": "A production Next.js 16 site on Vercel with a custom domain, backed by Supabase for real-time menu, gallery and content management." },
+      { "label": "ARCHITECTURE", "text": "Next.js App Router → Supabase (Postgres + Storage) → Vercel edge" },
+      { "label": "KEY FEATURES", "text": "3-phase animated page transitions · dynamic menu explorer · masonry photo gallery with lightbox · AI concierge chatbot · WhatsApp & Instagram FABs." }
+    ]
+  },
+  "manifesto": "I build *full-stack* products — mobile, web & *blockchain* — and put *AI* where it *matters.*",
+  "marquee": {
+    "row1": ["Python", "Flutter", "Next.js", "Firebase", "Solidity", "FastAPI"],
+    "row2": ["React", "TypeScript", "TensorFlow", "Supabase", "Ethereum", "Flask"]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "num": "01",
+      "img": "/images/projects/unitrack.png",
+      "alt": "UniTrack",
+      "stack": "FLUTTER · FIREBASE · SOLIDITY",
+      "title": "UniTrack",
+      "desc": "Blockchain-based campus academic & credit management — role-based dashboards for students, faculty and admins, with tamper-proof certificates anchored on Ethereum (Sepolia) via Solidity smart contracts and a hybrid on-chain/off-chain Firestore architecture.",
+      "link": "https://github.com/mishal4583/UniTrack-Academic-Platform",
+      "live": false
+    },
+    {
+      "id": 2,
+      "num": "02",
+      "img": "/images/projects/veycho.png",
+      "alt": "Veycho Resto-Café",
+      "stack": "NEXT.JS 16 · TYPESCRIPT · SUPABASE",
+      "title": "Veycho Resto-Café",
+      "desc": "A production restaurant platform live at veycho.in, serving a café in Wayanad — animated page transitions, a dynamic menu explorer, a masonry photo gallery and an AI concierge, all on Next.js 16 + Supabase, deployed on Vercel.",
+      "link": "https://veycho.in",
+      "live": true
+    },
+    {
+      "id": 3,
+      "num": "03",
+      "img": "/images/projects/nutriai.png",
+      "alt": "NutriAI",
+      "stack": "FLUTTER · FLASK · ML",
+      "title": "NutriAI",
+      "desc": "An AI-powered health & nutrition assistant — a Flutter app with a Flask ML backend predicting risk for diabetes, cholesterol, triglycerides and hypertension, with role-based access for patients and doctors.",
+      "link": "https://github.com/mishal4583/NutriAI",
+      "live": false
+    },
+    {
+      "id": 4,
+      "num": "04",
+      "img": "/images/projects/clustrr.png",
+      "alt": "Clustrr",
+      "stack": "FLUTTER · FIREBASE · WEBRTC",
+      "title": "Clustrr",
+      "desc": "A centralized academic collaboration app for students, class reps and teachers — secure auth, real-time announcements, material sharing and batch-wise messaging via Firebase Cloud Messaging.",
+      "link": "https://github.com/mishal4583/clustrr",
+      "live": false
+    },
+    {
+      "id": 5,
+      "num": "05",
+      "img": "/images/projects/speech-recognition.jpg",
+      "alt": "Speech Recognition System",
+      "stack": "GENERATIVE AI · FASTAPI",
+      "title": "Speech Recognition System",
+      "desc": "Real-time and batch speech-to-text on faster-whisper, with multilingual transcription and intelligent chunking for large audio files.",
+      "link": "https://github.com/mishal4583/Generative-AI-Speech-Recognition-System",
+      "live": false
+    }
+  ],
+  "path": [
+    { "year": "2025", "title": "Generative AI Intern", "sub": "Prodigy Infotech (Virtual) · text generation, model inference & prompt engineering — recognized for outstanding performance" },
+    { "year": "2025", "title": "Artificial Intelligence Intern", "sub": "CODTECH IT Solutions (Virtual) · 6-week internship in applied AI concepts & ML workflows" },
+    { "year": "2023—24", "title": "Software Development Intern", "sub": "Kenmerk Softwares · built the Wanderin travel-management platform with Dart, Flutter & React" },
+    { "year": "2024—Now", "title": "Master of Computer Applications", "sub": "JAIN (Deemed-to-be University), Bengaluru" },
+    { "year": "2021—24", "title": "Bachelor of Computer Applications", "sub": "Alphonsa Arts & Science College, Wayanad" }
+  ],
+  "certs": [
+    { "id": 1, "issuer": "LINKEDIN LEARNING", "year": "2025", "title": "AI Engineering Essentials: Navigating the Tech Revolution", "link": "https://www.linkedin.com/learning/certificates/3c51cbd7263c39304cfe469878e9b90624379a0df54dbbc75aeafe21fa5eac54" },
+    { "id": 2, "issuer": "LINKEDIN LEARNING", "year": "2025", "title": "AI in Connected Products (AIoT)", "link": "https://www.linkedin.com/learning/certificates/1216f485ed19365a16a760fe0117a79cad0fe9779a40629af5bb51b84a92a3e5" },
+    { "id": 3, "issuer": "IBM · COURSERA", "year": "2025", "title": "Introduction to Artificial Intelligence (AI)", "link": "https://coursera.org/share/d4d022e9cd590aae51a5219e42a82a45" },
+    { "id": 4, "issuer": "IBM · COURSERA", "year": "2024", "title": "Python for Data Science, AI & Development", "link": "https://coursera.org/share/734a24398c834c558ae3df6d40ad5286" },
+    { "id": 5, "issuer": "CODIO · COURSERA", "year": "2025", "title": "Object-Oriented Python: Inheritance & Encapsulation", "link": "https://coursera.org/share/406ddb4e7fc5875a662f00954a83a433" },
+    { "id": 6, "issuer": "GOOGLE · COURSERA", "year": "2025", "title": "Foundations: Data, Data, Everywhere", "link": "https://coursera.org/share/d705c21a0bd8fdf25fe40187559b9038" },
+    { "id": 7, "issuer": "JAIN · COURSERA", "year": "2025", "title": "Fundamentals of Data Science", "link": "https://coursera.org/share/a9d9c3b38fd2a0785d78f78190fbce85" },
+    { "id": 8, "issuer": "AWS · COURSERA", "year": "2025", "title": "AWS Cloud Practitioner Essentials", "link": "https://coursera.org/share/be059802ec812d56409cf015393b56b2" },
+    { "id": 9, "issuer": "IBM · COURSERA", "year": "2024", "title": "Introduction to Cloud Computing", "link": "https://coursera.org/share/fa8d81b98aa7a0a3527e32e37f650475" },
+    { "id": 10, "issuer": "JAIN · COURSERA", "year": "2025", "title": "Exploring the Internet of Things", "link": "https://coursera.org/share/07f96881cc53bbbf684989003f554208" },
+    { "id": 11, "issuer": "VANDERBILT · COURSERA", "year": "2025", "title": "Android App Components: Intents, Activities & Broadcast Receivers", "link": "https://coursera.org/share/e8dba544fb33517398fa5d4282edef10" },
+    { "id": 12, "issuer": "UIUC · COURSERA", "year": "2024", "title": "Ordered Data Structures", "link": "https://coursera.org/share/dc89057398b63c193f8db75a3011f871" },
+    { "id": 13, "issuer": "U. COLORADO · COURSERA", "year": "2024", "title": "Fundamentals of Network Communication", "link": "https://coursera.org/share/a9e394ad2bd2bb7d699ad615f460042c" },
+    { "id": 14, "issuer": "ARM · COURSERA", "year": "2024", "title": "Introduction to Microprocessors", "link": "https://coursera.org/share/faf4f63152b46f226e800f7ea6e1c967" }
+  ],
+  "contact": {
+    "email": "Mishal444583@gmail.com",
+    "phone": "+91 8921894609",
+    "location": "Bangalore, Karnataka, India",
+    "github": "https://github.com/mishal4583",
+    "linkedin": "https://www.linkedin.com/in/mishal-ks-5611a5233/",
+    "roles": ["Full-Stack Developer", "AI / ML Engineer", "Prompt Engineer", "Software Engineer", "Mobile Developer", "Freelance"]
+  },
+  "github": {
+    "username": "mishal4583",
+    "pinnedRepos": [
+      { "name": "veycho.in", "desc": "Live restaurant platform · Next.js 16 + Supabase + Vercel", "href": "https://veycho.in", "live": true },
+      { "name": "UniTrack-Academic-Platform", "desc": "Blockchain campus management · Flutter + Solidity", "href": "https://github.com/mishal4583/UniTrack-Academic-Platform", "live": false },
+      { "name": "NutriAI", "desc": "AI health assistant · Flutter + Flask + ML", "href": "https://github.com/mishal4583/NutriAI", "live": false },
+      { "name": "clustrr", "desc": "Academic collaboration app · Flutter + Firebase", "href": "https://github.com/mishal4583/clustrr", "live": false }
+    ],
+    "languages": [
+      { "lang": "Dart", "sub": "Flutter", "pct": 38, "color": "#54C5F8" },
+      { "lang": "Python", "sub": "ML · AI · Backend", "pct": 28, "color": "#3572A5" },
+      { "lang": "JS / TS", "sub": "Next.js · React", "pct": 18, "color": "#F1E05A" },
+      { "lang": "Java", "sub": "Android · DSA", "pct": 9, "color": "#B07219" },
+      { "lang": "Solidity", "sub": "Smart Contracts", "pct": 7, "color": "#AA6746" }
+    ]
+  },
+  "stack": [
+    { "label": "LANGUAGES", "chips": ["Python", "Java", "C", "SQL", "JavaScript", "Dart"] },
+    { "label": "FRONTEND", "chips": ["Flutter", "React", "Next.js", "HTML / CSS"] },
+    { "label": "BACKEND & APIs", "chips": ["FastAPI", "Flask", "REST APIs", "Firebase Auth", "Cloud Functions"] },
+    { "label": "DATA & CLOUD", "chips": ["Firestore", "Firebase Storage", "MySQL", "NoSQL", "AWS"] },
+    { "label": "BLOCKCHAIN", "chips": ["Ethereum", "Solidity", "Smart Contracts", "Ethers.js"] },
+    { "label": "AI / ML", "chips": ["Transformers", "GPT-2", "TensorFlow", "Stable Diffusion", "GANs", "Hugging Face", "NumPy", "OpenCV"] },
+    { "label": "TOOLS", "chips": ["Git", "GitHub", "Google Colab", "Streamlit", "Android Studio"] }
+  ],
+  "numbers": [
+    { "target": 5, "suffix": "+", "label": "Flagship full-stack builds" },
+    { "target": 3, "suffix": "", "label": "Internships completed" },
+    { "target": 14, "suffix": "", "label": "Professional certifications" },
+    { "target": 1, "suffix": "", "label": "Live production platform" },
+    { "target": 20, "suffix": "+", "label": "Tools & frameworks across the stack" }
+  ]
+}
