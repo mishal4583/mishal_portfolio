@@ -1691,29 +1691,30 @@ body {
   .stat-cell + .stat-cell { border-left: none; }
   .stat-big { font-size: clamp(44px, 13vw, 72px); }
 
-  /* ─ Projects — disable horizontal scroll, stack vertically ─ */
-  .projects-pin { background: rgba(13,12,12,0.86); }
-  .projects-sticky {
-    position: relative !important;
-    height: auto !important;
-    overflow: visible !important;
-    flex-direction: column;
-    padding: 72px 0 60px;
-    align-items: flex-start;
+  /* ─ Projects — scroll-linked horizontal, mobile card sizes ─ */
+  .track-intro { min-width: 78vw; max-width: 78vw; }
+  .track-intro-heading { font-size: clamp(34px, 10vw, 54px); }
+  .project-card {
+    min-width: 82vw;
+    max-width: 82vw;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
   }
-  .projects-label { position: static; margin-left: 5vw; margin-bottom: 32px; }
-  .work-hint { display: none; }
-  .projects-track {
-    flex-direction: column;
-    padding: 0 5vw;
-    transform: none !important;
-    width: 100%;
+  .project-img-wrap { height: 170px; }
+  .project-body { padding: 16px 18px 18px; }
+  .project-stack { margin-bottom: 7px; }
+  .project-title { font-size: 19px; margin-bottom: 8px; }
+  .project-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  .track-intro { min-width: 100%; max-width: 100%; padding-right: 0; padding-bottom: 36px; }
-  .track-intro-heading { font-size: clamp(36px, 10vw, 58px); }
-  .project-card { min-width: 100%; max-width: 100%; margin-right: 0; margin-bottom: 20px; }
-  .project-img-wrap { height: 220px; }
-  .track-outro { min-width: 100%; padding: 28px 0 0; }
+  .project-link { font-size: 12px; }
+  .track-outro { min-width: 60vw; }
 
   /* ─ Featured ─ */
   .featured-section { padding: 72px 5vw; }

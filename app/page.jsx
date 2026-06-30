@@ -222,24 +222,7 @@ export default function Portfolio() {
       const pin = projPinRef.current, track = projTrackRef.current;
       if (!pin || !track) return;
       const sticky = pin.querySelector('.projects-sticky');
-      if (window.innerWidth <= 768) {
-        pin.style.height = '';
-        pin._extra = 0;
-        track.style.transform = '';
-        track.style.flexDirection = 'column';
-        track.style.padding = '0 5vw';
-        track.style.width = '100%';
-        if (sticky) {
-          sticky.style.position = 'relative';
-          sticky.style.height = 'auto';
-          sticky.style.overflow = 'visible';
-          sticky.style.flexDirection = 'column';
-          sticky.style.alignItems = 'flex-start';
-          sticky.style.padding = '60px 0 50px';
-        }
-        return;
-      }
-      // Desktop — restore styles
+      // Clear any previously-set inline overrides so CSS controls layout
       if (sticky) {
         sticky.style.position = '';
         sticky.style.height = '';
@@ -249,8 +232,11 @@ export default function Portfolio() {
         sticky.style.padding = '';
       }
       track.style.flexDirection = '';
+      track.style.overflowX = '';
+      track.style.scrollSnapType = '';
       track.style.padding = '';
       track.style.width = '';
+      track.style.gap = '';
       const extra = Math.max(0, track.scrollWidth - window.innerWidth);
       pin._extra = extra;
       pin.style.height = (extra + window.innerHeight) + 'px';
@@ -290,9 +276,9 @@ export default function Portfolio() {
           if (heroCue) heroCue.style.opacity = `${clamp(1 - p * 5, 0, 1)}`;
         }
 
-        // horizontal projects scroll — desktop only
+        // horizontal projects scroll
         const projPin = projPinRef.current, projTrack = projTrackRef.current;
-        if (projPin && projTrack && window.innerWidth > 768) {
+        if (projPin && projTrack) {
           const r = projPin.getBoundingClientRect();
           const p = clamp(-r.top / (projPin.offsetHeight - vh), 0, 1);
           projTrack.style.transform = `translate3d(${-p * (projPin._extra || 0)}px, 0, 0)`;
@@ -574,7 +560,7 @@ export default function Portfolio() {
           <div className="projects-track" ref={projTrackRef}>
             <div className="track-intro">
               <div className="track-intro-heading">Five<br />flagship<br /><span>builds.</span></div>
-              <p className="track-intro-p">Full-stack, mobile, blockchain and AI — each one designed, built and (in one case) deployed to real users.{isMobile ? '' : ' Scroll sideways →'}</p>
+              <p className="track-intro-p">Full-stack, mobile, blockchain and AI — each one designed, built and (in one case) deployed to real users. Scroll sideways →</p>
             </div>
             {projects.map(p => (
               <article key={p.id} className="project-card">
