@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 
-const ADMIN_PASS = 'mishalmca2026';
 const uid = () => Math.random().toString(36).slice(2) + Date.now();
 
 /* ── Color palette ── */
@@ -142,23 +141,61 @@ function Modal({ title, onClose, children }) {
 
 /* ── Login ── */
 function LoginScreen({ onAuth }) {
-  const [pw, setPw] = useState('');
-  const [err, setErr] = useState('');
-  const submit = () => {
-    if (pw === ADMIN_PASS) { localStorage.setItem('portfolio-admin', ADMIN_PASS); onAuth(); }
-    else { setErr('Incorrect password'); }
+  const [email, setEmail]   = useState('');
+  const [pw, setPw]         = useState('');
+  const [err, setErr]       = useState('');
+  const [busy, setBusy]     = useState(false);
+
+  const submit = async () => {
+    if (!email.trim() || !pw) { setErr('Please enter your email and password'); return; }
+    setBusy(true);
+    setErr('');
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), password: pw }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Login failed');
+      onAuth();
+    } catch (e) {
+      setErr(e.message);
+    }
+    setBusy(false);
   };
+
+  const onKey = (e) => { if (e.key === 'Enter') submit(); };
+
   return (
     <div style={S.loginWrap}>
       <div style={S.loginCard}>
         <div style={S.loginM}>M</div>
         <h1 style={S.loginH1}>Portfolio Admin</h1>
         <p style={S.loginSub}>Sign in to manage your portfolio content</p>
-        <input style={S.loginInput} type="password" placeholder="Password" value={pw}
+        <input
+          style={S.loginInput}
+          type="email"
+          placeholder="Email address"
+          value={email}
+          autoComplete="email"
+          onChange={e => { setEmail(e.target.value); setErr(''); }}
+          onKeyDown={onKey}
+        />
+        <div style={{ height: 10 }} />
+        <input
+          style={S.loginInput}
+          type="password"
+          placeholder="Password"
+          value={pw}
+          autoComplete="current-password"
           onChange={e => { setPw(e.target.value); setErr(''); }}
-          onKeyDown={e => e.key === 'Enter' && submit()} />
+          onKeyDown={onKey}
+        />
         {err && <div style={S.loginError}>{err}</div>}
-        <button style={S.loginBtn} onClick={submit}>Enter Dashboard →</button>
+        <button style={{ ...S.loginBtn, opacity: busy ? 0.6 : 1 }} onClick={submit} disabled={busy}>
+          {busy ? 'Signing in…' : 'Sign In →'}
+        </button>
       </div>
     </div>
   );
@@ -895,9 +932,12 @@ export default function AdminPage() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast]   = useState(null);
 
-  /* Persist auth in localStorage */
+  /* Verify session cookie on mount */
   useEffect(() => {
-    if (localStorage.getItem('portfolio-admin') === ADMIN_PASS) setAuthed(true);
+    fetch('/api/admin/verify')
+      .then(r => r.ok ? r.json() : null)
+      .then(json => { if (json?.ok) setAuthed(true); })
+      .catch(() => {});
   }, []);
 
   /* Load data once authed */
@@ -973,7 +1013,10 @@ export default function AdminPage() {
           </nav>
           <div style={S.sidebarFoot}>
             <a href="/" target="_blank" rel="noopener noreferrer" style={S.viewSiteLink}>View Portfolio ↗</a>
-            <button style={S.logoutBtn} onClick={() => { localStorage.removeItem('portfolio-admin'); setAuthed(false); }}>
+            <button style={S.logoutBtn} onClick={async () => {
+              await fetch('/api/admin/logout', { method: 'POST' });
+              setAuthed(false);
+            }}>
               Logout
             </button>
           </div>

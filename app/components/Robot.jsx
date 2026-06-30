@@ -6,7 +6,7 @@ const CHAPTER_MSGS = {
   ABOUT: "Meet the human who built me.",
   APPROACH: "Here's how Mishal thinks.",
   NUMBERS: "The proof, in numbers.",
-  WORK: "Swipe through the builds →",
+  WORK: "Check out the builds below!",
   FEATURED: "My favourite — Veycho, live in prod.",
   'AI LAB': "Psst… you can chat with me!",
   STACK: "Powered by all of these.",
@@ -101,7 +101,8 @@ export default function Robot({ chapName }) {
         if (x <= margin) { x = margin; dir = 1; facing = 1; pickBeh(now); }
         else if (x >= maxX) { x = maxX; dir = -1; facing = -1; pickBeh(now); }
       }
-      robot.style.transform = `translateX(${x}px)`;
+      const sc = window.innerWidth <= 768 ? 0.46 : 1;
+      robot.style.transform = sc < 1 ? `translateX(${x}px) scale(${sc})` : `translateX(${x}px)`;
 
       let ty = 0, rot = 0, squash = 0, thrust = 0;
       if (idle) {

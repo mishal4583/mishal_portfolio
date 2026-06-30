@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import Loader from './components/Loader';
@@ -65,7 +65,7 @@ const STACK_GROUPS = [
   { label: 'TOOLS', chips: ['Git', 'GitHub', 'Google Colab', 'Streamlit', 'Android Studio'] },
 ];
 
-const CHAT_CONTEXT = "You are the portfolio assistant for Mishal KS, a full-stack developer and MCA student at JAIN University, Bangalore. He builds Flutter, Next.js, React, FastAPI, Flask and Firebase apps, works with Ethereum/Solidity smart contracts, and applies AI/ML. Key projects: UniTrack (blockchain campus platform), Veycho (live restaurant site at veycho.in), NutriAI, Clustrr, AI Speech Recognition. 3 internships: Prodigy Infotech (Gen AI), CODTECH (AI), Kenmerk Softwares (software dev). Email: mishal444583@gmail.com. GitHub: @mishal4583. Answer in 2-4 sentences.";
+const CHAT_CONTEXT = "You are the portfolio assistant for Mishal KS, a full-stack developer and MCA student at JAIN University, Bangalore. He builds Flutter, Next.js, React, FastAPI, Flask and Firebase apps, works with Ethereum/Solidity smart contracts, and applies AI/ML. Key projects: UniTrack (blockchain campus + tamper-proof certificates on Ethereum Sepolia), Veycho (live production restaurant site at veycho.in built with Next.js 16 + Supabase), NutriAI (Flutter + Flask ML health app predicting diabetes & hypertension), Clustrr (Flutter + Firebase academic collaboration app), AI Speech Recognition (faster-whisper + FastAPI). 3 internships: Prodigy Infotech Gen AI intern, CODTECH AI intern, Kenmerk Softwares software dev intern (built Wanderin travel platform). 14 certifications from IBM, Google, AWS, LinkedIn Learning. Email: mishal444583@gmail.com. GitHub: @mishal4583. Be concise and accurate — answer in 2-4 sentences. If asked about availability or hiring, say he is open to opportunities.";
 
 /* ─── Main Component ─────────────────────────────────────────── */
 export default function Portfolio() {
@@ -162,6 +162,7 @@ export default function Portfolio() {
   const [wordsVisible, setWordsVisible] = useState(false);
   const [revealMap, setRevealMap] = useState({});
   const [counterTriggers, setCounterTriggers] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
 
   const LIGHT_SECTIONS = new Set(['FEATURED', 'NUMBERS', 'PATH']);
 
@@ -183,7 +184,15 @@ export default function Portfolio() {
         if (d.marquee) setMarqueeRows(d.marquee);
         if (d.github) setGithubData(d.github);
       })
-      .catch(() => {});
+      .catch((e) => console.error('Failed to load portfolio data:', e));
+  }, []);
+
+  /* ── Mobile detection ── */
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
   }, []);
 
   /* ── Mouse tracking ── */
@@ -205,6 +214,36 @@ export default function Portfolio() {
     const sizeProjPin = () => {
       const pin = projPinRef.current, track = projTrackRef.current;
       if (!pin || !track) return;
+      const sticky = pin.querySelector('.projects-sticky');
+      if (window.innerWidth <= 768) {
+        pin.style.height = '';
+        pin._extra = 0;
+        track.style.transform = '';
+        track.style.flexDirection = 'column';
+        track.style.padding = '0 5vw';
+        track.style.width = '100%';
+        if (sticky) {
+          sticky.style.position = 'relative';
+          sticky.style.height = 'auto';
+          sticky.style.overflow = 'visible';
+          sticky.style.flexDirection = 'column';
+          sticky.style.alignItems = 'flex-start';
+          sticky.style.padding = '60px 0 50px';
+        }
+        return;
+      }
+      // Desktop — restore styles
+      if (sticky) {
+        sticky.style.position = '';
+        sticky.style.height = '';
+        sticky.style.overflow = '';
+        sticky.style.flexDirection = '';
+        sticky.style.alignItems = '';
+        sticky.style.padding = '';
+      }
+      track.style.flexDirection = '';
+      track.style.padding = '';
+      track.style.width = '';
       const extra = Math.max(0, track.scrollWidth - window.innerWidth);
       pin._extra = extra;
       pin.style.height = (extra + window.innerHeight) + 'px';
@@ -244,9 +283,9 @@ export default function Portfolio() {
           if (heroCue) heroCue.style.opacity = `${clamp(1 - p * 5, 0, 1)}`;
         }
 
-        // horizontal projects scroll
+        // horizontal projects scroll — desktop only
         const projPin = projPinRef.current, projTrack = projTrackRef.current;
-        if (projPin && projTrack) {
+        if (projPin && projTrack && window.innerWidth > 768) {
           const r = projPin.getBoundingClientRect();
           const p = clamp(-r.top / (projPin.offsetHeight - vh), 0, 1);
           projTrack.style.transform = `translate3d(${-p * (projPin._extra || 0)}px, 0, 0)`;
@@ -281,13 +320,15 @@ export default function Portfolio() {
       });
     };
 
+    const onResize = () => { sizeProjPin(); onScroll(); };
     sizeProjPin();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => { sizeProjPin(); onScroll(); });
+    window.addEventListener('resize', onResize);
     onScroll();
 
     return () => {
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
@@ -393,15 +434,18 @@ export default function Portfolio() {
       {/* ── 00 · HERO ── */}
       <section className="chapter hero-pin" data-name="INTRO" id="sec-hero" ref={heroPinRef}>
         <div className="hero-sticky" ref={heroRef}>
-          <div className="hero-spline" ref={heroSplineRef}>
-            <SplineViewer />
-          </div>
-          <div className="hero-overlay" ref={heroOverlayRef} />
-          {/* Live 3D pill */}
-          <div className="hero-live-pill">
-            <span className="hero-live-dot" />
-            <span className="hero-live-text">LIVE 3D &nbsp;·&nbsp; DRAG TO EXPLORE</span>
-          </div>
+          {!isMobile && (
+            <div className="hero-spline" ref={heroSplineRef}>
+              <SplineViewer />
+            </div>
+          )}
+          {!isMobile && <div className="hero-overlay" ref={heroOverlayRef} />}
+          {!isMobile && (
+            <div className="hero-live-pill">
+              <span className="hero-live-dot" />
+              <span className="hero-live-text">LIVE 3D &nbsp;&middot;&nbsp; DRAG TO EXPLORE</span>
+            </div>
+          )}
 
           <div className="hero-content" ref={heroContentRef}>
             <div className="hero-inner">
@@ -423,7 +467,7 @@ export default function Portfolio() {
                     {last.split('').map((ch, i) => (
                       <span key={i} className="hl accent" style={{ animationName: 'letterRise', animationDuration: '0.9s', animationDelay: `${lastStart + i * 0.07}s`, animationFillMode: 'both' }}>{ch}</span>
                     ))}
-                    <span className="hl" style={{ animationName: 'letterRise', animationDuration: '0.9s', animationDelay: `${dotDelay}s`, animationFillMode: 'both', color: '#16120f' }}>.</span>
+                    <span className="hl" style={{ animationName: 'letterRise', animationDuration: '0.9s', animationDelay: `${dotDelay}s`, animationFillMode: 'both', color: isMobile ? '#f3efe9' : '#16120f' }}>.</span>
                   </>);
                 })()}
               </h1>
@@ -523,7 +567,7 @@ export default function Portfolio() {
           <div className="projects-track" ref={projTrackRef}>
             <div className="track-intro">
               <div className="track-intro-heading">Five<br />flagship<br /><span>builds.</span></div>
-              <p className="track-intro-p">Full-stack, mobile, blockchain and AI — each one designed, built and (in one case) deployed to real users. Scroll sideways →</p>
+              <p className="track-intro-p">Full-stack, mobile, blockchain and AI — each one designed, built and (in one case) deployed to real users.{isMobile ? '' : ' Scroll sideways →'}</p>
             </div>
             {projects.map(p => (
               <article key={p.id} className="project-card">
@@ -866,44 +910,6 @@ function ContributionGrid() {
   );
 }
 
-function GhImage({ src, alt }) {
-  const [failed, setFailed] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    timerRef.current = setTimeout(() => setFailed(true), 10000);
-    return () => clearTimeout(timerRef.current);
-  }, []);
-
-  const handleLoad = () => {
-    clearTimeout(timerRef.current);
-    setLoaded(true);
-  };
-
-  if (failed) {
-    return (
-      <div className="github-stat-fallback">
-        <a href="https://github.com/mishal4583" target="_blank" rel="noopener noreferrer" className="github-stat-link">
-          ↗ github.com/mishal4583
-        </a>
-      </div>
-    );
-  }
-  return (
-    <>
-      {!loaded && <div className="github-stat-skeleton" />}
-      <img
-        className="gh-img"
-        src={src}
-        alt={alt}
-        style={{ display: loaded ? 'block' : 'none' }}
-        onLoad={handleLoad}
-        onError={() => setFailed(true)}
-      />
-    </>
-  );
-}
 
 const CHAT_FALLBACK = "Live chat runs on the deployed site. Meanwhile: Mishal is a full-stack developer (Flutter, Next.js, Firebase, blockchain & AI). His live project is veycho.in. Reach him at mishal444583@gmail.com or GitHub @mishal4583.";
 
@@ -923,14 +929,18 @@ function ChatWidget({ context }) {
     if (busy || !text.trim()) return;
     setBusy(true);
     setInput('');
+    const history = messages.filter(m => !m.typing);
     setMessages(prev => [...prev, { role: 'user', text }, { role: 'bot', text: '…', typing: true }]);
     try {
-      if (!window.claude?.complete) throw new Error('offline');
-      const convo = messages.filter(m => !m.typing).map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.text }));
-      convo.push({ role: 'user', content: text });
-      const msgs = [{ role: 'user', content: context }, { role: 'assistant', content: "Understood — I'm Mishal's assistant." }, ...convo];
-      const reply = await window.claude.complete({ messages: msgs });
-      setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { role: 'bot', text: reply || CHAT_FALLBACK } : m));
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: [...history, { role: 'user', text }], context }),
+      });
+      const json = await res.json();
+      const reply = json.reply;
+      if (!reply) throw new Error(json.error || 'no reply');
+      setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { role: 'bot', text: reply } : m));
     } catch {
       setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { role: 'bot', text: CHAT_FALLBACK } : m));
     }

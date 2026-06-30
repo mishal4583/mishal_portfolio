@@ -1646,23 +1646,144 @@ body {
 @media (max-width: 1024px) {
   .rail .rl { display: none; }
 }
+
 @media (max-width: 768px) {
+  /* ─ Nav chrome ─ */
   .rail { display: none; }
   .chapter-display { display: none; }
-}
-@media (max-width: 768px) {
-  .about-grid { grid-template-columns: 1fr; }
+  .logo-text { display: none; }
+
+  /* ─ Hero — dark background on mobile ─ */
+  .hero-pin { height: 180vh; }
+  .hero-sticky { background: radial-gradient(140% 90% at 30% 40%, #1e1814 0%, #0d0c0c 65%); }
+  .hero-content { padding: 0 5vw; }
+  .hero-inner { max-width: 100%; }
+  /* Text — flip to light for dark bg */
+  .hero-eyebrow { color: var(--accent); }
+  .hero-name { font-size: clamp(46px, 12vw, 72px); color: #f3efe9; }
+  .hero-subtitle-text { font-size: 12px; letter-spacing: 0.04em; color: #9b938a; }
+  .hero-desc { font-size: 14px; color: #7d756d; }
+  .hero-cue-text { color: #6b635c; }
+  /* Buttons — outline variant goes light */
+  .hero-actions .btn-pill-outline {
+    color: #f3efe9;
+    border-color: rgba(255,255,255,0.22);
+    background: transparent;
+  }
+  .hero-actions .btn-pill-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-actions { gap: 8px; margin-top: 24px; }
+  .btn-pill { padding: 11px 20px; font-size: 12px; }
+  .hero-cue { left: 5vw; bottom: 22px; }
+  .hero-live-pill { right: 10px; bottom: 10px; min-width: auto; padding: 7px 12px; gap: 7px; }
+  .hero-live-text { font-size: 10px; letter-spacing: 0.14em; }
+
+  /* ─ About ─ */
+  .about-section { padding: 72px 5vw; }
+  .about-grid { grid-template-columns: 1fr; gap: 44px; }
   .about-cards { grid-template-columns: 1fr 1fr; }
-  .featured-grid { grid-template-columns: 1fr; }
-  .featured-img-wrap { height: auto; }
-  .path-item { grid-template-columns: 80px 1fr; gap: 16px; }
-  .project-card { min-width: 85vw; max-width: 85vw; }
-  .track-intro { min-width: 80vw; }
-  .hero-actions { gap: 8px; }
-  .contact-actions { gap: 10px; }
-}
-@media (max-width: 480px) {
-  .about-cards { grid-template-columns: 1fr; }
+
+  /* ─ Approach ─ */
+  .approach-section { padding: 72px 5vw; }
+
+  /* ─ Numbers ─ */
+  .numbers-section { padding: 72px 5vw; }
   .numbers-grid { grid-template-columns: 1fr 1fr; }
   .stat-cell + .stat-cell { border-left: none; }
+  .stat-big { font-size: clamp(44px, 13vw, 72px); }
+
+  /* ─ Projects — disable horizontal scroll, stack vertically ─ */
+  .projects-pin { background: rgba(13,12,12,0.86); }
+  .projects-sticky {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    flex-direction: column;
+    padding: 72px 0 60px;
+    align-items: flex-start;
+  }
+  .projects-label { position: static; margin-left: 5vw; margin-bottom: 32px; }
+  .work-hint { display: none; }
+  .projects-track {
+    flex-direction: column;
+    padding: 0 5vw;
+    transform: none !important;
+    width: 100%;
+  }
+  .track-intro { min-width: 100%; max-width: 100%; padding-right: 0; padding-bottom: 36px; }
+  .track-intro-heading { font-size: clamp(36px, 10vw, 58px); }
+  .project-card { min-width: 100%; max-width: 100%; margin-right: 0; margin-bottom: 20px; }
+  .project-img-wrap { height: 220px; }
+  .track-outro { min-width: 100%; padding: 28px 0 0; }
+
+  /* ─ Featured ─ */
+  .featured-section { padding: 72px 5vw; }
+  .featured-grid { grid-template-columns: 1fr; gap: 40px; }
+  .featured-img-wrap { height: auto; order: -1; }
+  .featured-details { grid-template-columns: 1fr; gap: 24px; margin-top: 44px; }
+
+  /* ─ AI Lab ─ */
+  .ailab-section { padding: 72px 5vw; }
+  .chat-box { max-width: 100%; }
+  .chat-log { min-height: 120px; max-height: 200px; padding: 16px; gap: 10px; }
+  .chat-bubble { font-size: 13px; padding: 10px 14px; }
+  .chat-chips { padding: 0 16px 12px; gap: 6px; }
+  .chip { font-size: 11px; padding: 5px 10px; }
+  .chat-input { padding: 14px 16px; font-size: 14px; }
+  .chat-send { padding: 0 16px; font-size: 12px; }
+  .ailab-links { gap: 8px; }
+  .ailab-link { font-size: 11px; padding: 7px 12px; }
+
+  /* ─ Stack ─ */
+  .stack-section { padding: 60px 0; }
+  .stack-label { padding: 0 5vw; margin-bottom: 28px; }
+  .stack-chips-grid { padding: 0 5vw; margin-top: 36px; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+
+  /* ─ Path ─ */
+  .path-section { padding: 72px 5vw; }
+  .path-item { grid-template-columns: 72px 1fr; gap: 14px; }
+  .path-title { font-size: 18px; }
+
+  /* ─ Certs ─ */
+  .certs-section { padding: 72px 5vw; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .cert-card { padding: 18px; }
+  .certs-header { margin-bottom: 32px; }
+
+  /* ─ GitHub ─ */
+  .github-section { padding: 72px 5vw; }
+  .github-stats-row { grid-template-columns: 1fr; }
+  .github-chart-box { padding: 18px; }
+
+  /* ─ Contact ─ */
+  .contact-section { padding: 72px 5vw; }
+  .contact-card { max-width: 100%; margin-top: 32px; }
+  .contact-card-row { padding: 14px 16px; gap: 10px; flex-wrap: wrap; }
+  .contact-card-label { min-width: 68px; font-size: 9px; }
+  .contact-card-val { font-size: 14px; }
+  .contact-actions { gap: 8px; margin-top: 28px; }
+  .availability-chips { margin-top: 20px; gap: 8px; }
+  .avail-chip { font-size: 11px; padding: 6px 12px; }
+  .contact-footer { padding-top: 44px; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* ─ Fixed UI ─ */
+  .robot { left: 4px; bottom: 4px; transform-origin: bottom left; }
+  .to-top { right: 14px; bottom: 14px; width: 40px; height: 40px; font-size: 16px; }
+
+  /* ─ Section labels & headings ─ */
+  .section-label.light { margin-bottom: 32px; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: clamp(40px, 10.5vw, 58px); }
+  .about-cards { grid-template-columns: 1fr; }
+  .numbers-grid { grid-template-columns: 1fr 1fr; }
+  .path-item { grid-template-columns: 60px 1fr; gap: 10px; }
+  .path-title { font-size: 16px; }
+  .path-sub { font-size: 13px; }
+  .certs-header { flex-direction: column; align-items: flex-start; }
+  .github-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .contact-footer-info { font-size: 11px; }
+  .contact-footer-copy { font-size: 11px; }
+  .featured-detail-p { font-size: 13px; }
+  .gh-lang-pct { font-size: 22px; }
 }
