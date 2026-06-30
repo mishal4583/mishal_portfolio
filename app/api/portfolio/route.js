@@ -3,27 +3,29 @@ import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
-);
-
 const DATA_PATH = path.join(process.cwd(), 'data', 'portfolio.json');
+
+function sb() {
+  return createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_KEY,
+    { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }
+  );
+}
 
 export async function GET() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await sb()
       .from('portfolio_data')
       .select('data')
       .eq('id', 1)
       .single();
 
-    if (!error && data && data.data && Object.keys(data.data).length > 0) {
+    if (!error && data?.data && Object.keys(data.data).length > 0) {
       return NextResponse.json(data.data);
     }
   } catch {}
 
-  // Fallback to bundled JSON (first load before any admin save)
   const raw = fs.readFileSync(DATA_PATH, 'utf-8');
   return NextResponse.json(JSON.parse(raw));
 }
@@ -31,7 +33,12 @@ export async function GET() {
 export async function PUT(req) {
   try {
     const body = await req.json();
-    const { error } = await supabase
+
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_KEY) {
+      return NextResponse.json({ ok: false, error: 'Supabase env vars missing' }, { status: 500 });
+    }
+
+    const { error } = await sb()
       .from('portfolio_data')
       .upsert({ id: 1, data: body, updated_at: new Date().toISOString() });
 
