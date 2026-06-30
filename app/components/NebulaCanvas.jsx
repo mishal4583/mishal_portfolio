@@ -21,7 +21,7 @@ export default function NebulaCanvas({ getMouse }) {
       dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       w = canvas.width = Math.max(1, rect.width) * dpr;
       h = canvas.height = Math.max(1, rect.height) * dpr;
-      const n = Math.min(54, Math.floor(rect.width / 26));
+      const n = Math.min(90, Math.floor(rect.width / 16));
       parts = Array.from({ length: n }, () => ({
         x: Math.random() * w, y: Math.random() * h,
         hx: Math.random() * w, hy: Math.random() * h,
@@ -64,7 +64,7 @@ export default function NebulaCanvas({ getMouse }) {
         p.x += p.vx; p.y += p.vy;
       }
 
-      const LINK = 130 * dpr;
+      const LINK = 170 * dpr;
       for (let i = 0; i < parts.length; i++) {
         for (let j = i + 1; j < parts.length; j++) {
           const a = parts[i], b = parts[j];

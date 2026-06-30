@@ -11,9 +11,14 @@ export default function AmbientCanvas({ heroRef }) {
     let w, h, dpr, parts;
     let rafId, active = false;
 
-    const accent = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#FF5722';
+    // Cache accent color — only re-read on resize, not every frame
+    let cachedAccent = '#FF5722';
+    const readAccent = () => {
+      cachedAccent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#FF5722';
+    };
 
     const resize = () => {
+      readAccent();
       dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       w = canvas.width = innerWidth * dpr;
       h = canvas.height = innerHeight * dpr;
@@ -35,7 +40,6 @@ export default function AmbientCanvas({ heroRef }) {
     canvas.style.transition = 'opacity .6s ease';
     canvas.style.opacity = '0';
 
-    // observe hero — pause canvas while hero is visible (Spline already runs)
     let obs;
     const hero = heroRef?.current;
     if (hero) {
@@ -55,13 +59,12 @@ export default function AmbientCanvas({ heroRef }) {
       rafId = requestAnimationFrame(loop);
       if (document.hidden || !active || !parts) return;
       ctx.clearRect(0, 0, w, h);
-      const ac = accent();
       for (const p of parts) {
         p.x += p.vx; p.y += p.vy; p.t += 0.012;
         if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
         if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
         ctx.globalAlpha = (Math.sin(p.t) * 0.35 + 0.65) * p.a;
-        ctx.fillStyle = p.accent ? ac : '#ffd9c9';
+        ctx.fillStyle = p.accent ? cachedAccent : '#ffd9c9';
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, 6.283);
         ctx.fill();

@@ -197,6 +197,10 @@ export default function Portfolio() {
   useEffect(() => {
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
     let ticking = false;
+    // Cache DOM queries — never query inside the scroll/RAF callback
+    let cachedChapters = null, cachedParallax = null;
+    const getChapters  = () => cachedChapters  || (cachedChapters  = Array.from(document.querySelectorAll('.chapter')));
+    const getParallax  = () => cachedParallax  || (cachedParallax  = Array.from(document.querySelectorAll('[data-parallax]')));
 
     const sizeProjPin = () => {
       const pin = projPinRef.current, track = projTrackRef.current;
@@ -251,7 +255,7 @@ export default function Portfolio() {
         }
 
         // parallax images
-        document.querySelectorAll('[data-parallax]').forEach(el => {
+        getParallax().forEach(el => {
           const r = el.getBoundingClientRect();
           const center = r.top + r.height / 2 - vh / 2;
           const speed = parseFloat(el.getAttribute('data-parallax')) || 0.12;
@@ -259,7 +263,7 @@ export default function Portfolio() {
         });
 
         // active section — track by data-name so nav order can differ from DOM order
-        const sections = document.querySelectorAll('.chapter');
+        const sections = getChapters();
         let activeName = 'INTRO', activeDomIdx = 0;
         sections.forEach((s, i) => {
           if (s.getBoundingClientRect().top <= vh * 0.45) {
