@@ -88,6 +88,44 @@ function Field({ label, value, onChange, multiline, placeholder, type = 'text' }
   );
 }
 
+function ImageUploadField({ label, value, onChange }) {
+  const [uploading, setUploading] = useState(false);
+  const [err, setErr] = useState('');
+
+  const handleFile = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setErr('');
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const json = await res.json();
+      if (json.url) onChange(json.url);
+      else setErr(json.error || 'Upload failed');
+    } catch {
+      setErr('Upload failed');
+    }
+    setUploading(false);
+  };
+
+  return (
+    <div style={S.fieldWrap}>
+      <label style={S.label}>{label}</label>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <input style={{ ...S.input, flex: 1 }} type="text" value={value || ''} onChange={e => onChange(e.target.value)} placeholder="URL or upload below" />
+        <label style={{ ...S.editBtn, cursor: 'pointer', whiteSpace: 'nowrap', padding: '7px 14px' }}>
+          {uploading ? 'Uploading…' : 'Upload Image'}
+          <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} disabled={uploading} />
+        </label>
+      </div>
+      {value && <img src={value} alt="preview" style={{ marginTop: 8, maxHeight: 80, borderRadius: 6, objectFit: 'cover' }} />}
+      {err && <div style={{ color: cl.error, fontSize: 12, marginTop: 4 }}>{err}</div>}
+    </div>
+  );
+}
+
 function Modal({ title, onClose, children }) {
   return (
     <div style={S.backdrop} onClick={e => e.target === e.currentTarget && onClose()}>
@@ -193,7 +231,7 @@ function ProjectsTab({ data, saveSection }) {
           <Field label="Title *" value={form.title} onChange={f('title')} />
           <Field label="Tech Stack (e.g. FLUTTER · FIREBASE)" value={form.stack} onChange={f('stack')} />
           <Field label="Description" value={form.desc} onChange={f('desc')} multiline />
-          <Field label="Image path (e.g. /images/projects/foo.png)" value={form.img} onChange={f('img')} />
+          <ImageUploadField label="Project Image" value={form.img} onChange={v => setForm(p => ({ ...p, img: v }))} />
           <Field label="Image alt text" value={form.alt} onChange={f('alt')} />
           <Field label="Project URL" value={form.link} onChange={f('link')} />
           <div style={S.checkWrap}>
@@ -471,7 +509,7 @@ function FeaturedTab({ data, saveSection }) {
       <Field label="Project Title" value={form.title} onChange={f('title')} />
       <Field label="Description" value={form.description} onChange={f('description')} multiline />
       <Field label="Live URL (e.g. https://veycho.in)" value={form.url} onChange={f('url')} />
-      <Field label="Image path (e.g. /images/projects/veycho.png)" value={form.img} onChange={f('img')} />
+      <ImageUploadField label="Featured Image" value={form.img} onChange={v => setForm(p => ({ ...p, img: v }))} />
 
       <div style={{ marginBottom: 16 }}>
         <label style={S.label}>Tags</label>
